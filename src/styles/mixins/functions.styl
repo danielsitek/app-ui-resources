@@ -1,0 +1,54 @@
+
+// Return highly contrasted color
+contrast-color(color, dark = #000, light = #fff)
+    if dark(color)
+        return light
+    else
+        return dark
+
+
+
+// Move color in HSL spectrum the same way like diff between 2 other colors
+shift-color(color, shift-from, shift-to)
+
+    shift-h = hue(color) + (hue(shift-to) - hue(shift-from))
+    shift-s = saturation(color) + (saturation(shift-to) - saturation(shift-from))
+    shift-l = lightness(color) + (lightness(shift-to) - lightness(shift-from))
+
+    return hsl(shift-h, shift-s, shift-l)
+
+
+// Difference
+difference(numa, numb)
+
+    divideFromA = numa - numb
+    divideFromB = numb - numa
+
+    if (divideFromA > 0)
+        return divideFromA
+    else
+        return divideFromB
+
+
+// Negative
+negative(number)
+    return -1 * number
+
+
+// Rem calc
+rem-calc(_value, _base-size = base-font-size)
+    _rem = round(_value/_base-size, 3)
+    return unit(_rem, 'rem')
+
+
+// Em calc
+em-calc(_value, _base-size = base-font-size)
+    _em = round(_value/_base-size, 3)
+    return unit(_em, 'em')
+
+
+// BLH calc
+// Function for calculating base number for Chameleon's BLH
+blh-calc(num, base = base-row-height)
+    return round(num/base, 3)
+

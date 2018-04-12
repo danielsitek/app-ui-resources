@@ -1,0 +1,10 @@
+.vscode
+node_modules
+
+public/admin
+public/src
+public/themes
+public/vendors
+public/wysiwyg
+
+!public/*.html

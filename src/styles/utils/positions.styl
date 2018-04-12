@@ -1,0 +1,42 @@
+/**
+ * Position classes
+ */
+
+
+/** Mixins */
+_factory-position(prefix = null)
+
+    if (prefix != null)
+        prefix = prefix + '-'
+
+    /.{prefix}position-reset
+        position: initial
+
+    /.{prefix}position-relative
+        position: relative
+
+    /.{prefix}position-absolute
+        position: absolute
+
+    /.{prefix}position-fixed
+        position: fixed
+
+
+/**
+ * Render display classes
+ *
+ * @access public
+ */
+util-render-positions()
+
+    _factory-position()
+
+    @media medium-up
+        _factory-position('medium')
+
+    @media large-up
+        _factory-position('large')
+
+    @media only print
+        _factory-position('print')
+

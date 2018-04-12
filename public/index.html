@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./themes/default/front/project.css?dkr90me" id="theme-styles">
+    <script>
+        window.onDocumentReady = [];
+        window.onWindowLoad = [];
+    </script>
+</head>
+<body>
+    <h1>Assets test: Front</h1>
+
+    <a href="embed.html">[ Embed ]</a>
+    <a href="admin.html">[ Admin ]</a>
+    <a href="index.html">[ Front ]</a>
+
+    <hr>
+
+    <button onClick="changeTheme('default')">Default theme</button>
+    <button onClick="changeTheme('theme01')">Theme: Theme01</button>
+
+    <div class="test-div">test</div>
+
+    <script>
+        // For testing
+        function changeTheme(themeName) {
+
+            const hash = Math.random().toString(36).substring(2, 10);
+            const oldlink = document.querySelector('#theme-styles');
+            const newlink = document.createElement('link');
+            newlink.setAttribute('rel', 'stylesheet');
+            newlink.setAttribute('type', 'text/css');
+            newlink.setAttribute('href', `./themes/${themeName}/front/project.css?${hash}`);
+            newlink.setAttribute('id', 'theme-styles');
+
+            document.querySelector("head").replaceChild(newlink, oldlink);
+        }
+    </script>
+
+    <script src="./vendors/project.js?9je42m"></script>
+    <script src="./themes/default/front/project.js?9je42m"></script>
+</body>
+</html>

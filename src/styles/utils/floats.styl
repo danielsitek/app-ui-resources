@@ -1,0 +1,44 @@
+/**
+ * Float classes
+ */
+
+
+/** Mixins */
+_factory-float(prefix = null)
+
+    if (prefix != null)
+        prefix = prefix + '-'
+
+    /.{prefix}float-left
+        float: left
+
+    /.{prefix}float-right
+        float: right
+
+    /.{prefix}float-center
+        float: none
+        margin-left: auto
+        margin-right: auto
+
+    /.{prefix}float-none
+        float: none
+
+
+/**
+ * Render floats classes
+ *
+ * @access public
+ */
+util-render-floats()
+
+    _factory-float()
+
+    @media medium-up
+        _factory-float('medium')
+
+    @media large-up
+        _factory-float('large')
+
+    @media only print
+        _factory-float('print')
+

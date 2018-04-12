@@ -1,0 +1,62 @@
+/**
+ * Text size classes
+ */
+
+
+/** Variables */
+u-text-sizes ?= {
+    small: {
+        larger: 1.25rem,
+        large: 1.125rem,
+        normal: 1rem,
+        small: .88rem,
+        smaller: .8125rem
+    },
+    medium: {
+        larger: 1.25rem,
+        large: 1.125rem,
+        normal: 1rem,
+        small: .88rem,
+        smaller: .8125rem
+    },
+    large: {
+        larger: 1.25rem,
+        large: 1.125rem,
+        normal: 1rem,
+        small: .88rem,
+        smaller: .8125rem
+    }
+}
+
+
+/** Mixins */
+_factory-text-size( media = 'small', size = u-text-sizes.small)
+    if ( media )
+        media = media + '-'
+
+    for key, value in size
+        /.{media}text-{key}
+            font-size: value
+
+
+/**
+ * Render text sizing classes
+ *
+ * @access public
+ */
+util-render-text-sizes()
+
+    _factory-text-size()
+
+    .small
+        @extends .small-text-small
+
+    @media medium-up
+        _factory-text-size('medium', u-text-sizes.medium)
+
+    @media large-up
+        _factory-text-size('large', u-text-sizes.large)
+
+    @media only print
+        _factory-text-size('print', u-text-sizes.medium)
+

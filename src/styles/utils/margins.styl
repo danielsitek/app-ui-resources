@@ -1,0 +1,47 @@
+/**
+ * Margins classes
+ */
+
+
+/** Variables */
+u-margins = {
+    from: 0,
+    to: 4
+}
+u-margins-size = body-line-height-rem
+
+
+/** Mixins */
+_factory-margins(prefix = 'small')
+    class = prefix + '-margin'
+    courses = 'top' 'bottom'
+
+    _margins(n, s)
+        for c in courses
+            /.{class}-{c}-{n}
+                margin-{c}: (s * u-margins-size)
+
+    _margins('05', 0.5)
+
+    for i in u-margins.from..u-margins.to
+        _margins(i, i)
+
+
+/**
+ * Render margin classes
+ *
+ * @access public
+ */
+util-render-margins()
+
+    _factory-margins()
+
+    @media medium-up
+        _factory-margins('medium')
+
+    @media large-up
+        _factory-margins('large')
+
+    @media only print
+        _factory-margins('print')
+

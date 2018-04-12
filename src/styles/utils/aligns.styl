@@ -1,0 +1,41 @@
+/**
+ * Align classes
+ */
+
+
+/** Mixins */
+_factory-align(prefix = null)
+
+    _horizntal-align-positions = left right center
+    _vertical-align-positions = top bottom middle
+
+    if (prefix != null)
+        prefix = prefix + '-'
+
+    for pos in _horizntal-align-positions
+        /.{prefix}align-{pos}
+            text-align: pos
+
+    for pos in _vertical-align-positions
+        /.{prefix}align-{pos}
+            vertical-align: pos
+
+
+/**
+ * Render align classes
+ *
+ * @access public
+ */
+util-render-aligns()
+
+    _factory-align()
+
+    @media medium-up
+        _factory-align('medium')
+
+    @media large-up
+        _factory-align('large')
+
+    @media only print
+        _factory-align('print')
+

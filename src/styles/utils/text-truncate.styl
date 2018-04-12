@@ -1,0 +1,34 @@
+
+$u-text-truncate-lh ?= 1.5em
+
+utli-render-text-truncate()
+
+    /**
+     * Ořízne text uvnitř na jeden řádek a zakončí ellipsisem
+     */
+    .text-truncate
+        display: block
+        text-nowrap()
+
+
+    /**
+     * Stejný efekt jako `.text-truncate`,
+     * ale ve verzi pro použití v tabulce bez fixního layoutu
+     *
+     * html:
+     * <span class="table-text-truncate">
+     *    <span>Truncanovaný text v tabulce</span>
+     * </span>
+     */
+    .table-text-truncate
+        position: relative
+        display: block
+        height: $u-text-truncate-lh
+        min-width: .5em
+
+        > *
+            position: absolute
+            display: block
+            width: 100%
+            text-nowrap()
+

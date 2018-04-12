@@ -1,0 +1,23 @@
+@charset "UTF-8"
+
+@import "variables"
+@import "styles/mixins"
+
+html
+    text-size-adjust: 100%
+    color: color-primary
+
+body
+    max-width: 44em
+    margin: 1rem auto
+    padding: 0 1rem
+
+.test-div
+    background: url($theme-images + 'fastparrot.gif')
+    background: url("../images/fastparrot2.gif")
+    color: color-success
+
+.test-div-01
+    color: color-secondary
+
+@import "styles/utils"

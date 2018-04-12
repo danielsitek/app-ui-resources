@@ -1,0 +1,49 @@
+/**
+ * Paddings classes
+ */
+
+
+/** Variables */
+u-paddings = {
+    from: 0,
+    to: 4
+}
+u-paddings-size = body-line-height-rem
+
+
+/** Mixins */
+_factory-paddings(prefix = 'small')
+    class = prefix + '-padding'
+    courses = 'top' 'bottom'
+
+    _paddings(n, s)
+        /.{class}-{n}
+            padding: (s * u-paddings-size)
+
+        for c in courses
+            /.{class}-{c}-{n}
+                padding-{c}: (s * u-paddings-size)
+
+    _paddings('05', 0.5)
+
+    for i in u-paddings.from..u-paddings.to
+        _paddings(i, i)
+
+
+/**
+ * Render padding classes
+ *
+ * @access public
+ */
+util-render-paddings()
+    _factory-paddings()
+
+    @media medium-up
+        _factory-paddings('medium')
+
+    @media large-up
+        _factory-paddings('large')
+
+    @media only print
+        _factory-paddings('print')
+

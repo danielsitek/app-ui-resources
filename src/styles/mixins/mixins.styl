@@ -1,0 +1,186 @@
+// Mixins
+
+
+// Setup form elements appearance
+appearance()
+    -webkit-appearance: arguments
+    -moz-appearance: arguments
+
+
+// Setup font smoothing
+font-smoothing(val = antialiased)
+    val-moz-osx = auto;
+
+    if (val == antialiased)
+        val-moz-osx = grayscale
+
+    -webkit-font-smoothing: val
+    -moz-osx-font-smoothing: val-moz-osx
+
+
+// Set text wrapping to ellipsis
+text-nowrap()
+    -ms-text-overflow: ellipsis
+    text-overflow: ellipsis
+    white-space: nowrap
+    overflow: hidden
+
+
+// Clearfix
+clearfix()
+    &:before,
+    &:after
+        display: table
+        content: ""
+
+    &:after
+        clear: both
+
+
+// Mixin for vertical gradients
+vertical-gradient(colorStart, colorEnd)
+    background-image: linear-gradient(to top,  colorStart 0%, colorEnd 100%) /* W3C */
+    filter: unquote('progid:DXImageTransform.Microsoft.gradient( startColorstr=' + colorStart + ', endColorstr=' + colorEnd + ',GradientType=0 )') /* IE6-9 */
+
+
+// Mixin for horizontal gradients
+horizontal-gradient(colorStart, colorEnd)
+    background-image: linear-gradient(to right,  colorStart 0%, colorEnd 100%) /* W3C */
+    filter: unquote('progid:DXImageTransform.Microsoft.gradient( startColorstr=' + colorStart + ', endColorstr=' + colorEnd + ',GradientType=0 )') /* IE6-9 */
+
+
+// Redefinovaná mixina z components/chameleonui-core/stylus/html.styl
+html-selection( $text, $bg )
+    background: rgba($bg, .8)
+    color: $text
+    text-shadow: none
+
+
+// Customize input placeholder
+input-placeholder(color, style = null)
+    &::-webkit-input-placeholder
+        if style
+            font-style: style
+        color: color
+
+    &::-moz-placeholder
+        if style
+            font-style: style
+        color: color !important
+
+    &:-moz-placeholder
+        if style
+            font-style: style
+        color: color !important
+
+    &:-ms-input-placeholder
+        if style
+            font-style: style
+        color: color !important
+
+
+// https://developer.mozilla.org/en-US/docs/Web/CSS/user-select
+// user-select: none
+user-select()
+    -webkit-user-select: arguments
+    -moz-user-select: arguments
+    -ms-user-select: arguments
+    user-select: arguments
+
+
+// Media Query mixin
+media-query( $size )
+    @media $size
+        {block}
+
+
+// Set simple bg color or bg gradient
+//
+// uses:
+// theme-bg-gradient( red ) -> render bg color
+// theme-bg-gradient( red, blue ) -> render linear bg gradient
+theme-bg-gradient()
+    if (length(arguments) > 1)
+        background-color: arguments[0]
+        background-image: linear-gradient(to right,  arguments[0], arguments[1]) /* W3C */
+        filter: 'progid:DXImageTransform.Microsoft.gradient(startColorstr=%s,endColorstr=%s,GradientType=0)' % (arguments[0] arguments[1]) /* IE6-9 */
+    else
+        background-color: arguments
+
+
+// =============================================================================
+// Visibility mixins
+// =============================================================================
+
+//
+// Mixins
+// =============================================================================
+// Hide visually and from screenreaders, but maintain layout
+invisible()
+    visibility: hidden
+
+// Hide from both screenreaders and browsers: http://h5bp.com/u
+hidden()
+    display: none !important
+    visibility: hidden
+
+// Hide only visually, but have it available for screenreaders: http://h5bp.com/v
+vhidden()
+    border: 0
+    clip: rect(0 0 0 0)
+    height: 1px; margin: -1px
+    overflow: hidden
+    padding: 0
+    position: absolute
+    width: 1px
+
+    // Extends the .visuallyhidden class to allow the element to be focusable
+    // when navigated to via the keyboard: http://h5bp.com/p
+    &.focusable:active,
+    &.focusable:focus
+        clip: auto
+        height: auto
+        margin: 0
+        overflow: visible
+        position: static
+        width: auto
+
+
+// Custom scrollbar for webkit browser
+// @link https://scotch.io/tutorials/customize-the-browsers-scrollbar-with-css
+// @link https://css-tricks.com/snippets/sass/custom-scrollbars-mixin/
+scrollbar()
+    &::-webkit-scrollbar
+        width: 6px
+        background-color: transparent
+
+    &::-webkit-scrollbar-thumb
+        background-color: #D7D7D7
+
+    &::-webkit-scrollbar-track
+        background-color: transparent
+
+
+// Top and Bottom shadows in vertical scroling area
+// @link http://lea.verou.me/2012/04/background-attachment-local/
+// @link https://codepen.io/laustdeleuran/pen/DBaAu
+scrolling-shadows($background-color = rgb(255, 255, 255), $shadow-intensity = 0.2, $shadow-color = rgb(0,0,0), $cover-size = 40px, $shadow-size = 14px)
+	background: linear-gradient($background-color 30%, rgba($background-color,0)), linear-gradient(rgba($background-color,0), $background-color 70%) 0 100%, radial-gradient(50% 0, farthest-side, rgba($shadow-color,$shadow-intensity), rgba($shadow-color,0)), radial-gradient(50% 100%,farthest-side, rgba($shadow-color,$shadow-intensity), rgba($shadow-color,0)) 0 100%
+	background: linear-gradient($background-color 30%, rgba($background-color,0)), linear-gradient(rgba($background-color,0), $background-color 70%) 0 100%, radial-gradient(farthest-side at 50% 0, rgba($shadow-color,$shadow-intensity), rgba($shadow-color,0)), radial-gradient(farthest-side at 50% 100%, rgba($shadow-color,$shadow-intensity), rgba($shadow-color,0)) 0 100%
+	background-repeat: no-repeat
+	background-color: $background-color
+	background-size: 100% $cover-size, 100% $cover-size, 100% $shadow-size, 100% $shadow-size
+	background-attachment: local, local, scroll, scroll
+
+
+// Cursors
+// Modifikace pro použití grab kurzoru
+// @link https://stackoverflow.com/questions/5697067/css-for-grabbing-cursors-drag-drop
+cursor(val)
+    if (val == 'grab')
+        cursor: -webkit-grab
+        cursor: -moz-grab
+        cursor: grab
+    else
+        cursor: val
+

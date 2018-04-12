@@ -1,0 +1,42 @@
+/**
+ * Display classes
+ */
+
+
+/** Mixins */
+_factory-display(prefix = null)
+
+    if (prefix != null)
+        prefix = prefix + '-'
+
+    /.{prefix}display-none
+        display: none
+
+    /.{prefix}display-block
+        display: block
+
+    /.{prefix}display-inline
+        display: inline
+
+    /.{prefix}display-inline-block
+        display: inline-block
+
+
+/**
+ * Render display classes
+ *
+ * @access public
+ */
+util-render-displays()
+
+    _factory-display()
+
+    @media medium-up
+        _factory-display('medium')
+
+    @media large-up
+        _factory-display('large')
+
+    @media only print
+        _factory-display('print')
+

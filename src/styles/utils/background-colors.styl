@@ -1,0 +1,21 @@
+
+
+util-render-background-colors()
+
+    if color-default
+        .bg-default
+            background-color: color-default
+
+    if color-white
+        .bg-white
+            background-color: color-white
+
+    if color-primary
+        .bg-primary
+            background-color: color-primary
+
+    if $theme-primary-colors
+        .bg-login-page,
+        .bg-theme-primary
+            theme-bg-gradient($theme-primary-colors)
+

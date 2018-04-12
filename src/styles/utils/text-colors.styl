@@ -1,0 +1,57 @@
+
+
+util-render-text-colors()
+
+    .color-inherit
+        color: inherit
+
+    if color-white
+        .text-white,
+        .color-white
+            color: color-white
+
+    if color-black
+        .text-black,
+        .color-black
+            color: color-black
+
+    if color-default
+        .color-default
+            color: color-default
+
+    if color-warning
+        .color-warning
+            color: color-warning
+
+    if color-error
+        .color-error
+            color: color-error
+
+    if color-important
+        .color-important
+            color: color-important
+
+    if color-success
+        .color-success
+            color: color-success
+
+    if color-gray-medium
+        .color-gray-medium
+            color: color-gray-medium
+
+    if color-gray
+        .color-gray
+            color: color-gray
+
+    if color-primary
+        .text-primary,
+        .color-primary
+            color: color-primary
+
+            > strong
+                color: inherit !important
+
+    if color-secondary
+        .color-secondary
+            color: color-secondary
+
